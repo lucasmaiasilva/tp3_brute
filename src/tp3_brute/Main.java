@@ -28,6 +28,7 @@ public class Main {
 		String linha ;
 		int entradas = 0;
 		entradas = sc.nextInt();
+		System.out.println("teste github");
 		
 		while (sc.hasNext()) {
 			mensagens.add(new Mensagem(1,sc.nextLine()));
