@@ -15,14 +15,14 @@ public class Main {
 		ArrayList<String> lista = new ArrayList<String>();
 		String resposta = new String();
 		for(int i=0;i<mensagens.size();i++){
-			
+
 			if(id!=mensagens.get(i).id){
 				lista.add(resposta);
 				resposta = new String();
 				id = mensagens.get(i).id;
 			}
 			resposta = resposta.concat(mensagens.get(i).response);
-			
+
 		}
 		lista.add(resposta);
 
