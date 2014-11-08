@@ -29,7 +29,6 @@ public class Main {
 		}
 		lista.add(resposta);
 		
-		
 
 		for(int i=0;i<lista.size();i++){
 			if(lista.get(i).contains("false")&&lista.get(i).contains("true")){
@@ -87,6 +86,7 @@ public class Main {
 					mensagens.add(new Mensagem(mensagens.get(i).id,mensagens.get(i).msg.replaceFirst("-", "1")));
 					mensagens.remove(i);
 					i=0;
+					j=0;
 				}
 			}
 		}
@@ -106,6 +106,8 @@ public class Main {
 		analisaResposta(mensagens);
 		ordenaMsgs(mensagens);
 		geraSaida(mensagens);
+		
+		
 
 		sc.close();
 	}
