@@ -11,18 +11,53 @@ public class Main {
 
 
 	public static void geraSaida(List<Mensagem> mensagens){
+		int id = 1;
+		ArrayList<String> lista = new ArrayList<String>();
+		String resposta = new String();
+		for(int i=0;i<mensagens.size();i++){
+			
+			if(id!=mensagens.get(i).id){
+				lista.add(resposta);
+				resposta = new String();
+				id = mensagens.get(i).id;
+			}
+			resposta = resposta.concat(mensagens.get(i).response);
+			
+		}
+		lista.add(resposta);
+
+		for(int i=0;i<lista.size();i++){
+			if(lista.get(i).contains("false")&&lista.get(i).contains("true")){
+				System.out.println("both");
+			}
+			else{
+				if(lista.get(i).contains("false")){
+					System.out.println("false");
+				}
+				else{
+					if(lista.get(i).contains("true")){
+						System.out.println("true");
+					}
+				}
+			}
+		}
+	}
+
+
+	public static void ordenaMsgs(List<Mensagem> mensagens){
+		String resposta = null;
+		int id = 1;
 		Collections.sort(mensagens, new Comparator<Mensagem>() {
 			@Override
 			public int compare(Mensagem  msg1,Mensagem msg2)
 			{
 				return  Double.compare(msg1.id, msg2.id);
-				
+
 			}
 		});
-
 	}
-	
-	
+
+
 	public static void analisaResposta(List<Mensagem> mensagens){
 		for(int i=0;i<mensagens.size();i++){
 			if(mensagens.get(i).msg.contains("11111")||mensagens.get(i).msg.contains("000")){
@@ -31,30 +66,9 @@ public class Main {
 			else{
 				mensagens.get(i).response="false";
 			}
-			
-		}
-	}
-	public static void eliminaDuplicatas(List<Mensagem> mensagens){
-		for(int i=0;i<mensagens.size();i++){
-			for(int j=0;j<mensagens.size();j++){
-				if(mensagens.get(i).msg.equals(mensagens.get(j).msg)&&i!=j&&mensagens.get(i).id==mensagens.get(j).id){
-					mensagens.remove(j);
-					i=0;
-				}		
-			}
-		}
-	}
-	public static void eliminaTracos(List<Mensagem> mensagens){
-		for(int i = 0;i<mensagens.size();i++){
-			for(int j=0;j<mensagens.get(i).msg.length();j++){
-				if(mensagens.get(i).msg.charAt(j)=='-'){
-					mensagens.remove(i);
-					i=0;
-				}
-			}
-		}
-	}
 
+		}
+	}
 
 	public static void geraCombinacoes(List<Mensagem> mensagens){
 		for(int i=0;i<mensagens.size();i++){
@@ -80,15 +94,9 @@ public class Main {
 		}
 
 		geraCombinacoes(mensagens);
-		//eliminaTracos(mensagens);
-		//eliminaDuplicatas(mensagens);
 		analisaResposta(mensagens);
+		ordenaMsgs(mensagens);
 		geraSaida(mensagens);
-		
-		
-		for(int i=0;i<mensagens.size();i++){
-			mensagens.get(i).imprime();
-		}
 
 		sc.close();
 	}
