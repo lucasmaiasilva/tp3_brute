@@ -1,6 +1,7 @@
 package tp3_brute;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,8 +11,10 @@ import java.util.Scanner;
 public class Main {
 
 
-	public static void geraSaida(List<Mensagem> mensagens){
+	public static void geraSaida(List<Mensagem> mensagens) throws FileNotFoundException{
 		int id = 1;
+		PrintWriter out_file = new PrintWriter("output_bf.txt");
+		
 		ArrayList<String> lista = new ArrayList<String>();
 		String resposta = new String();
 		for(int i=0;i<mensagens.size();i++){
@@ -25,22 +28,28 @@ public class Main {
 
 		}
 		lista.add(resposta);
+		
+		
 
 		for(int i=0;i<lista.size();i++){
 			if(lista.get(i).contains("false")&&lista.get(i).contains("true")){
+				out_file.println("both");
 				System.out.println("both");
 			}
 			else{
 				if(lista.get(i).contains("false")){
+					out_file.println("false");
 					System.out.println("false");
 				}
 				else{
 					if(lista.get(i).contains("true")){
+						out_file.println("true");
 						System.out.println("true");
 					}
 				}
 			}
 		}
+		out_file.close();
 	}
 
 
